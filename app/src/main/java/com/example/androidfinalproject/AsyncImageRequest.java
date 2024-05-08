@@ -2,9 +2,7 @@ package com.example.androidfinalproject;
 
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-
 import android.graphics.Bitmap;
-
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -22,9 +20,14 @@ public class AsyncImageRequest extends AsyncTask<String, Integer, Bitmap> {
     protected Bitmap doInBackground(String... strings) {
         try {
             URL url = new URL(uri);
+            System.out.println(uri);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             InputStream response = connection.getInputStream();
-            return BitmapFactory.decodeStream(response);
+            Bitmap b = BitmapFactory.decodeStream(response);
+            System.out.println(b.getWidth());
+            System.out.println(b.getHeight());
+            response.close();
+            return b;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

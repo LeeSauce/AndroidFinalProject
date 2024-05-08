@@ -6,12 +6,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Pokemon implements FromJSONer {
     public String frontPic;
     public String name;
-    public HashMap<String,String> moves;
+    public ArrayList<String> moves;
+    public ArrayList<String> types;
 
     @NonNull
     public String toString() {
@@ -24,11 +26,18 @@ public class Pokemon implements FromJSONer {
         frontPic = sprites.getString("front_default");
         name = o.getString("name");
         JSONArray moves = o.getJSONArray("moves");
-        this.moves = new HashMap<>();
+        this.moves = new ArrayList<>();
         for(int i = 0; i < moves.length(); i++) {
             JSONObject elem = moves.getJSONObject(i);
             JSONObject move = elem.getJSONObject("move");
-            this.moves.put(move.getString("name"), move.getString("url"));
+            this.moves.add(move.getString("name"));
+        }
+        JSONArray types = o.getJSONArray("types");
+        this.types = new ArrayList<>();
+        for(int i = 0; i<types.length();i++){
+          JSONObject el = types.getJSONObject(i);
+          JSONObject type = el.getJSONObject("type");
+          this.types.add(type.getString("name"));
         }
     }
 }
