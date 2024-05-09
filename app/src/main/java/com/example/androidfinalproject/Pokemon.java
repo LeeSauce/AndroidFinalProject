@@ -9,8 +9,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Pokemon implements FromJSONer {
-    public String frontPic;
+public class Pokemon implements FromJSONer { public String frontPic;
     public String name;
     public ArrayList<String> moves;
     public ArrayList<String> types;
