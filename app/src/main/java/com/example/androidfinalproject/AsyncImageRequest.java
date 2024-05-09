@@ -20,12 +20,9 @@ public class AsyncImageRequest extends AsyncTask<String, Integer, Bitmap> {
     protected Bitmap doInBackground(String... strings) {
         try {
             URL url = new URL(uri);
-            System.out.println(uri);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             InputStream response = connection.getInputStream();
             Bitmap b = BitmapFactory.decodeStream(response);
-            System.out.println(b.getWidth());
-            System.out.println(b.getHeight());
             response.close();
             return b;
         } catch (Exception e) {

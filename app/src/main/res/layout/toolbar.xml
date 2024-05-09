@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"/>
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:orientation="horizontal">-->
 
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/toolbar"/>
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:openDrawer="start">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button"
-                android:id="@+id/insert"/>
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="hello drawer"/>
-        </LinearLayout>
-<!--        <com.google.android.material.navigation.NavigationView-->
-<!--            android:layout_width="wrap_content"-->
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:id="@+id/toolbar"/>-->
+<!--    <androidx.drawerlayout.widget.DrawerLayout-->
+<!--        android:id="@+id/drawer_layout"-->
+<!--        android:Measure-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        tools:openDrawer="start"/>-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="match_parent"-->
-<!--            android:layout_gravity="start"-->
-<!--            android:fitsSystemWindows="true"-->
-<!--            app:headerLayout="@layout/header_layout"-->
-<!--            app:menu="@menu/example_menu"-->
-<!--            android:id="@+id/nav_view"/>-->
-    </androidx.drawerlayout.widget.DrawerLayout>
+<!--            android:orientation="vertical">-->
+
+<!--            <Button-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Button"-->
+<!--                android:id="@+id/insert"/>-->
+<!--            <EditText-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="hello drawer"/>-->
+<!--        </LinearLayout>-->
+<!--&lt;!&ndash;        <com.google.android.material.navigation.NavigationView&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:layout_gravity="start"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:fitsSystemWindows="true"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:headerLayout="@layout/header_layout"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:menu="@menu/nav_items"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:id="@+id/nav_view"/>&ndash;&gt;-->
+<!--&lt;!&ndash;    </androidx.drawerlayout.widget.DrawerLayout>&ndash;&gt;-->
 
 
-</LinearLayout>
+<!--</LinearLayout>-->

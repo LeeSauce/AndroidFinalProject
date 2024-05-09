@@ -5,8 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 
 import androidx.annotation.Nullable;
+
+import java.sql.PreparedStatement;
 
 public class DBAdapter extends SQLiteOpenHelper {
 
@@ -56,6 +59,15 @@ public class DBAdapter extends SQLiteOpenHelper {
             return true;
         }
         return false;
+    }
+
+    public void onPokedex(Pokemon p){
+        SQLiteDatabase db = getWritableDatabase();
+        SQLiteStatement stmt = db.compileStatement("UPDATE " + TABLE_NAME + " SET " + BOOL + " = ? WHERE " + NAME + " = ?");
+        stmt.bindLong(1,p.onPokedex ? 1:0);
+        stmt.bindString(2,p.name);
+        stmt.execute();
+        db.close();
     }
 
     // will just return a cursor

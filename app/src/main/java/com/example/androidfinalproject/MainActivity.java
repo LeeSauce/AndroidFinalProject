@@ -1,104 +1,76 @@
 package com.example.androidfinalproject;
-
-import android.graphics.Bitmap;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.TextView;
-
-import androidx.activity.EdgeToEdge;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import com.google.android.material.navigation.NavigationView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    String helpTitle ="Help";
+    String helpContent="Search through the available pokemon and save them to your Pokedex";
+    protected void setupToolbar() {
+        //Bringing in Toolbar and Navigation Drawer
+        Toolbar tb = findViewById(R.id.toolbar);
+        setSupportActionBar(tb);
 
-public class MainActivity extends AppCompatActivity{
-    Adapter adapter;
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, tb, R.string.open, R.string.close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        //End toolbar and Nav Drawer
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
-
-
-        ListView list = (ListView)  findViewById(R.id.firstList);
-        list.setAdapter(adapter = new Adapter());
-        String uri = "https://pokeapi.co/api/v2/pokemon/";
-
-        // this loop will make two http requests to download an image from the API and adds to the list adapter
-        for(int i = 1; i <= 10; i++){
-            new AsyncHTTPRequest<>(new Pokemon(), uri + i, (poke) ->{
-                String frontImgURI = poke.frontPic;
-                new AsyncImageRequest(frontImgURI, (b) ->{
-                    adapter.listItem.add(b);
-                    adapter.notifyDataSetChanged();
-                }).execute();
-            }).execute();
-        }
-
-        list.setOnItemClickListener((parent, view, position, id)->{
-            //TODO : for new intents
-        });
-
-
+    public boolean onCreateOptionsMenu(Menu menu) {
+// Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar_items, menu);
+        return true;
     }
-// adapter to inflate list objects
-    private class Adapter extends BaseAdapter{
 
-        ArrayList<Bitmap> listItem = new ArrayList<>();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.Help) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(helpContent);
+            builder.setTitle(helpTitle);
+            builder.setCancelable(true);
+            builder.setNegativeButton("Close", (DialogInterface.OnClickListener) (dialog, which) -> {
+                dialog.cancel();
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+        return true;
+    }
 
-        @Override
-        public int getCount() {
 
-            return listItem.size();
+    @Override
+    public boolean onNavigationItemSelected(MenuItem menuItem) {
+        int id = menuItem.getItemId();
+        if (id == R.id.PokemonList) {
+            Intent main = new Intent(this, PokemonList.class);
+            startActivity(main);
+        } else if (id == R.id.Pokedex) {
+            Intent home = new Intent(this, MyPokedex.class);
+            startActivity(home);
+        } else if (id==R.id.Exit){
+            finishAffinity();
         }
 
-        @Override
-        public Object getItem(int position) {
-
-            return listItem.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            LayoutInflater inflater = getLayoutInflater();
-            View pokemonList = convertView;
-
-            if(pokemonList == null){
-                pokemonList = inflater.inflate(R.layout.pokemon_list_item, parent, false);
-            }
-
-            ImageButton item = (ImageButton) pokemonList.findViewById(R.id.imgBtn);
-            item.setImageBitmap((Bitmap) getItem(position));
-
-            return pokemonList;
-
-        }
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 }
