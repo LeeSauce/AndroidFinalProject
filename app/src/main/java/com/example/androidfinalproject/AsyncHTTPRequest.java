@@ -1,9 +1,7 @@
 package com.example.androidfinalproject;
 
 import android.os.AsyncTask;
-
 import org.json.JSONObject;
-
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -46,6 +44,7 @@ public class AsyncHTTPRequest<T extends FromJSONer> extends AsyncTask<String, In
             String content = toString_ByteArrayOutputStream(response);
             JSONObject jsonObject = new JSONObject(content);
             t.fromJSON(jsonObject);
+            response.close();
             return t;
         } catch (Exception e) {
             throw new RuntimeException(e);
