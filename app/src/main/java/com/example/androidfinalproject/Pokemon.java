@@ -8,8 +8,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-public class Pokemon implements FromJSONer {
-    public String frontPic;
+public class Pokemon implements FromJSONer { public String frontPic;
     public String name;
     public HashMap<String,String> moves;
 
