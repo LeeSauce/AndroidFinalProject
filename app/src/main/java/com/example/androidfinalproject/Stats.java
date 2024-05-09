@@ -11,30 +11,25 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import com.google.android.material.navigation.NavigationView;
-
-public class Stats extends MainActivity {
+public class Stats extends ToolBarSetup {
     DBAdapter dbAdapter = new DBAdapter(this);
 Pokemon p = new Pokemon();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.stats_constraint);
-        ProgressBar pb = findViewById(R.id.progressBar);
         setupToolbar();
 
+
+        ProgressBar pb = findViewById(R.id.progressBar);
         pb.setMax(10);
         ImageView img = findViewById(R.id.pokePic);
         TextView name = findViewById(R.id.textName);
         Button save = findViewById(R.id.buttonSave);
+
         save.setOnClickListener((e)->{
-            p.setOnPokedex(true);
-            dbAdapter.onPokedex(p);
             pb.setVisibility(View.VISIBLE);
+            dbAdapter.saveToDB(p);
         });
         save.setEnabled(false);
 

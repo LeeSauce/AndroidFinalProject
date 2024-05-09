@@ -17,16 +17,6 @@ public class Pokemon implements FromJSONer {
     public List<String> moves;
     public List<String> types;
 
-    public boolean onPokedex;
-
-    public Pokemon() {
-        onPokedex = false;
-    }
-
-    public void setOnPokedex(boolean onPokedex) {
-        this.onPokedex = onPokedex;
-    }
-
 
     @NonNull
     public String toString() {

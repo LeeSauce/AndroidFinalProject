@@ -21,8 +21,9 @@ public class DBAdapter extends SQLiteOpenHelper {
     private static final String ID = "Poke_Id"; //
     private static final String NAME = "Poke_Name";
     private static final String MOVES = "Num_Of_Moves";
-    private static final String TYPE = "Poke_Type";
-    private static final String BOOL = "On_Poke_Dex";
+    private static final String TYPE0 = "Poke_Type0";
+    private static final String TYPE1 = "Poke_Type1";
+
 
 
     public DBAdapter(Context context) {
@@ -35,12 +36,20 @@ public class DBAdapter extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //JUST FOR DEV, REMOVE BEFORE SUBMISSION
+        SQLiteStatement DropT = db.compileStatement("DROP TABLE IF EXISTS " + TABLE_NAME);
+        DropT.execute();
+//
+//        String s  = String.format("CREATE TABLE IF NOT EXISTS %s (%s text, %s integer, %s text, %s text)", TABLE_NAME, NAME, MOVES, TYPE0, TYPE1);
+//        db.execSQL(s);
+
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_NAME +
                 "("+ ID +" INTEGER PRIMARY KEY AUTOINCREMENT, "
                 +NAME +" VARCHAR(255) UNIQUE NOT NULL, " //added unique constraint
                 +MOVES +" INTEGER, "
-                +TYPE +" VARCHAR(255), "
-                + BOOL +" INTEGER NOT NULL" +");");
+                +TYPE0 +" VARCHAR(60), "
+                +TYPE1 + " VARCHAR(60));");
+
     }
 
     @Override
@@ -61,14 +70,29 @@ public class DBAdapter extends SQLiteOpenHelper {
         return false;
     }
 
-    public void onPokedex(Pokemon p){
+    public void saveToDB(Pokemon p){
         SQLiteDatabase db = getWritableDatabase();
-        SQLiteStatement stmt = db.compileStatement("UPDATE " + TABLE_NAME + " SET " + BOOL + " = ? WHERE " + NAME + " = ?");
-        stmt.bindLong(1,p.onPokedex ? 1:0);
-        stmt.bindString(2,p.name);
+        SQLiteStatement stmt = db.compileStatement("INSERT INTO " + TABLE_NAME + "(" + NAME + ", " + MOVES + ", " + TYPE0 + ", " + TYPE1 + ") " + "VALUES (?,?,?,?);");
+        stmt.bindString(1,p.name);
+        stmt.bindLong(2,p.moves.size());
+        stmt.bindString(3,p.types.get(0));
+        if(p.types.size()>1){
+        stmt.bindString(4,p.types.get(1));}
+        else{
+            stmt.bindString(4,"null");
+        }
         stmt.execute();
         db.close();
     }
+
+//    public void onPokedex(Pokemon p){
+//        SQLiteDatabase db = getWritableDatabase();
+//        SQLiteStatement stmt = db.compileStatement("UPDATE " + TABLE_NAME + " SET " + BOOL + " = ? WHERE " + NAME + " = ?");
+//        stmt.bindLong(1,p.onPokedex ? 1:0);
+//        stmt.bindString(2,p.name);
+//        stmt.execute();
+//        db.close();
+//    }
 
     // will just return a cursor
     public Cursor readTable(){

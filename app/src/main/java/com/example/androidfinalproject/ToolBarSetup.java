@@ -13,7 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ToolBarSetup extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     String helpTitle ="Help";
     String helpContent="Search through the available pokemon and save them to your Pokedex";
     protected void setupToolbar() {
