@@ -31,12 +31,14 @@ public class DBAdapter extends SQLiteOpenHelper {
     //Only one column because we only need the names
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //JUST FOR DEV, REMOVE BEFORE SUBMISSION
-        SQLiteStatement DropT = db.compileStatement("DROP TABLE IF EXISTS " + TABLE_NAME);
-        DropT.execute();
+//        //JUST FOR DEV, REMOVE BEFORE SUBMISSION
+//        SQLiteStatement DropT = db.compileStatement("DROP TABLE IF EXISTS " + TABLE_NAME);
+//        DropT.execute();
 
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_NAME +
-                "(" + NAME + " VARCHAR(255)); ");
+                "(" + NAME + " VARCHAR(255) UNIQUE NOT NULL); ");
+        // making the column unique will prevent multiple values to be added
+        // it's important to make NAME unique since it's a surrogate key
 
 
     }
@@ -48,37 +50,58 @@ public class DBAdapter extends SQLiteOpenHelper {
     }
 
 
-    public void saveToDB(Pokemon p) {
+//    public void saveToDB(Pokemon p) {
+//        SQLiteDatabase db = getWritableDatabase();
+//        SQLiteStatement stmt = db.compileStatement("INSERT INTO " + TABLE_NAME + "(" + NAME + ") " + "VALUES (?);");
+//        stmt.bindString(1, p.name);
+//        stmt.execute();
+//        db.close();
+//    }
+
+    public boolean saveToDB (Pokemon p){
+        //if we really aren't going to put anything else on the DB, I think we should just use this
         SQLiteDatabase db = getWritableDatabase();
-        SQLiteStatement stmt = db.compileStatement("INSERT INTO " + TABLE_NAME + "(" + NAME + ") " + "VALUES (?);");
-        stmt.bindString(1, p.name);
-        stmt.execute();
-        db.close();
+        ContentValues value = new ContentValues();
+
+        value.put(NAME, p.name);
+
+        long row = db.insert(TABLE_NAME, null, value);
+        if(row != -1){
+            return true;
+        }
+        return false;
     }
 
     //Want to return a List of the names so we can query the API for the pokemon for pokedex
+    // Hey Jenn, you just needed to pass in a cursor index instead of the value of i -- gabe
     public List<String> readTable() {
         List<String> names = new ArrayList<>();
 
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
-        cursor.moveToFirst();
+
+        int nameIndex = cursor.getColumnIndex(NAME);// <- needed an index
+
         if (cursor.getCount() == 0) {
             System.out.println("The database is empty");
         } else {
-            for (int i = 0; i < cursor.getCount(); i++) {
-                String name = cursor.getString(i);
+            // changed to while, since we aren't accessing anything from the variable i
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()){
+                String name = cursor.getString(nameIndex);
                 names.add(name);
+                cursor.moveToNext(); // also this needs to be added or we will run into a never ending loop
             }
+        }
+        if(names.isEmpty()){// just here for debuging
+            return null;
         }
         return names;
     }
 
         public void delete (Pokemon p){
             SQLiteDatabase db = getReadableDatabase();
-            SQLiteStatement delete = db.compileStatement("DELETE FROM " + TABLE_NAME + " WHERE " + NAME + " = ?");
-            delete.bindString(1, p.name);
-            delete.execute();
+            db.delete(TABLE_NAME, NAME, new String[]{p.name}); // let's try sqlites delete method
             db.close();
         }
 

@@ -10,6 +10,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Stats extends ToolBarSetup {
     DBAdapter dbAdapter = new DBAdapter(this);
@@ -27,8 +31,21 @@ Pokemon p = new Pokemon();
         Button save = findViewById(R.id.buttonSave);
 
         save.setOnClickListener((e)->{
+            String dbMsg = "Something else went wrong";;
             pb.setVisibility(View.VISIBLE);
-            dbAdapter.saveToDB(p);
+            if(dbAdapter.saveToDB(p))// added toString instance method
+            {
+                dbMsg= "Inserted into DB";
+            }else {
+                List<String> results = dbAdapter.readTable();
+                for(String col : results){
+                    if(col.equals(p.name)){
+                        dbMsg = "Value already entered";
+                        break;
+                    }
+                }
+            }
+            Toast.makeText(this, dbMsg, Toast.LENGTH_SHORT).show();// todo: change the msg to xml String
         });
         save.setEnabled(false);
         //Load pokemon with name given from previous Activity
