@@ -26,6 +26,7 @@
     <string name="Yes">Yes</string>
     <string name="No">No</string>
     <string name="AreYouSure">Are you sure you wish to remove </string>
+    <string name="Stats">Stats</string>
 
 
 </resources>

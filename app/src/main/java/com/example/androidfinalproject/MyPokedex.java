@@ -31,7 +31,9 @@ public class MyPokedex extends ToolBarSetup {
             return insets;
         });
 
-        setupToolbar();
+        setupToolbar(getString(R.string.Pokedex));
+
+
 
         TextView userPokedex = findViewById(R.id.UserPokedexText);
         ListView pokedex = findViewById(R.id.PokedexList);

@@ -24,7 +24,8 @@ Pokemon p = new Pokemon();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stats_constraint);
-        setupToolbar();
+        setupToolbar(getString(R.string.Stats));
+
 
         // Get views
         ProgressBar pb = findViewById(R.id.progressBar);

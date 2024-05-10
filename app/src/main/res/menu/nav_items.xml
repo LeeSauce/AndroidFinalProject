@@ -10,8 +10,13 @@
         android:orderInCategory="20"
         android:title="@string/PokemonList"
         app:showAsAction="never"/>
+    <item android:id="@+id/Welcome"
+        android:orderInCategory="20"
+        android:title="@string/Welcome"
+        app:showAsAction="never"/>
+
     <item android:id="@+id/Exit"
-        android:orderInCategory="30"
+        android:orderInCategory="40"
         android:title="@string/Exit"
         app:showAsAction="never"/>
 
