@@ -30,8 +30,7 @@ public class MyPokedex extends ToolBarSetup {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        setupToolbar();
+        setupToolbar(getString(R.string.Pokedex));
 
         TextView userPokedex = findViewById(R.id.UserPokedexText);
         ListView pokedex = findViewById(R.id.PokedexList);
@@ -39,17 +38,12 @@ public class MyPokedex extends ToolBarSetup {
 
         SharedPreferences prefs = getSharedPreferences("Name", Context.MODE_PRIVATE);
         String username = prefs.getString("UserName", "Trainer");
-        // lol, the string for the preference name and key val was set to all lowercase
-        //bug fixed
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
         DBAdapter db = new DBAdapter(this);
-
         userPokedex.setText(username + "'s Pokedex");
 
-
-        // pretty much the same logic as before, but it just validates that it exists in the db first
         List<String> pokemons = db.readTable();
 
         String uri = "https://pokeapi.co/api/v2/pokemon/";
@@ -72,15 +66,14 @@ public class MyPokedex extends ToolBarSetup {
                 }).execute();
             }
         }
-
     pokedex.setOnItemClickListener((par, view, pos, id) ->{
         Pokemon pokemon = adapter.getItem(pos).p;
-        alert.setTitle("Alert!").setMessage("Are you sure you wish to remove " + pokemon.name)
-                .setPositiveButton("Yes", (click, arg)->{
+        alert.setTitle(R.string.Alert).setMessage(getString(R.string.AreYouSure) + " " + pokemon.name)
+                .setPositiveButton(R.string.Yes, (click, arg)->{
                     db.delete(pokemon);
                     adapter.listItem.remove(pos);
                     adapter.notifyDataSetChanged();
-                }).setNegativeButton("No", (click, arg)->{}).create().show();
+                }).setNegativeButton(R.string.No, (click, arg)->{}).create().show();
     });
 
     }

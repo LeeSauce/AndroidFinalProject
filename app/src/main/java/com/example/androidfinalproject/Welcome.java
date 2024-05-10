@@ -41,7 +41,7 @@ public class Welcome extends AppCompatActivity {
         submit.setOnClickListener((c) -> {
             String username = name.getText().toString();
             saveSharedPrefs(username, editor);
-            Snackbar.make(name,"Thank you " + username, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(name,R.string.Thankyou + username, Snackbar.LENGTH_LONG).show();
         });
         //Launch PokeApi when button is pressed
         pokeapi.setOnClickListener((c) -> {

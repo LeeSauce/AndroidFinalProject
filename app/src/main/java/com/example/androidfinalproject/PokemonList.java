@@ -29,7 +29,8 @@ public class PokemonList extends ToolBarSetup {
             return insets;
         });
 
-        super.setupToolbar();
+        super.setupToolbar(getString(R.string.PokemonList));
+
 
         ListView list = (ListView)  findViewById(R.id.firstList);
         list.setAdapter(this.adapter =new ListAdapter(this));

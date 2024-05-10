@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AndroidFinalProject</string>
+    <string name="open">Ouvrir</string>
+    <string name="close">Fermer</string>
+    <string name="MyPokedex">Mon Pokedex</string>
+    <string name="PokemonList">Liste de Pokemon</string>
+    <string name="Exit">Quitter</string>
+    <string name="Help">Aide</string>
+    <string name="Welcome">Bienvenue</string>
+    <string name="EnterName">Entrer votre nom</string>
+    <string name="Submit">Soumettre</string>
+    <string name="Save">Sauvegarder</string>
+    <string name="Moves">Moves:</string>
+    <string name="Types">Types:</string>
+    <string name="Pokedex">Pokedex</string>
+    <string name="Creators">Gabe Lee et Jenn Hailey</string>
+    <string name="FinalProject">Project Final Android</string>
+    <string name="Thankyou">Merci</string>
+    <string name="Trainer">Entraineur</string>
+    <string name="HelpMessage">"Recherchez parmi les Pokémon disponibles et enregistrez-les sur votre Pokedex  "</string>
+    <string name="PokedexError">Erreure Pokedex!</string>
+    <string name="SavetoDBmsg">Savegarder au Pokedex</string>
+    <string name="dbMsg">Vous avez deja ce pokemon dans votre Pokedex</string>
+    <string name="Alert">Alerte!</string>
+    <string name="Yes">Oui</string>
+    <string name="No">Non</string>
+    <string name="AreYouSure">"Etez vous sure que vous voulez enlever "</string>
+    <string name="TryPokeApi">Essayer PokeApi</string>
+    <string name="Stats">Stats</string>
+</resources>

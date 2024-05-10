@@ -7,13 +7,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Android Final Project" />
+        android:text="@string/FinalProject" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pokedex" />
+        android:text="@string/Pokedex" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gabe Lee and Jenn Hailey" />
+        android:text="@string/Creators" />
 </LinearLayout>
