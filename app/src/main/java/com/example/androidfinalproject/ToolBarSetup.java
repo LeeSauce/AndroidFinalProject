@@ -1,21 +1,32 @@
 package com.example.androidfinalproject;
+
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.google.android.material.navigation.NavigationView;
 
 
 public class ToolBarSetup extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    String helpTitle = String.valueOf(R.string.Help);
-    String helpContent= String.valueOf(R.string.HelpMessage);
+    String helpTitle;
+    String helpContent;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        helpTitle = getString(R.string.Help);
+        helpContent = getString(R.string.HelpMessage);
+    }
     protected void setupToolbar() {
         //Bringing in Toolbar and Navigation Drawer
         Toolbar tb = findViewById(R.id.toolbar);

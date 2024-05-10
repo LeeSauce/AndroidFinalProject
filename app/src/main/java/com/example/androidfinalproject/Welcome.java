@@ -35,7 +35,7 @@ public class Welcome extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("Name", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
-        name.setHint(prefs.getString("UserName", String.valueOf(R.string.Trainer)));
+        name.setHint(prefs.getString("UserName", "Trainer"));
 
         //Save name to SharedPreferences when button is clicked
         submit.setOnClickListener((c) -> {

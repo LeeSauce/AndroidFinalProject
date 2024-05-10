@@ -8,6 +8,7 @@
     <string name="Help">Help</string>
     <string name="Welcome">Welcome</string>
     <string name="EnterName">Please enter your name</string>
+    <string name="TryPokeApi">Try PokeApi</string>
     <string name="Submit">Submit</string>
     <string name="Save">Save</string>
     <string name="Moves">Moves: </string>

@@ -86,16 +86,16 @@ Pokemon p = new Pokemon();
         @Override
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
-            String dbMsg = String.valueOf(R.string.PokedexError);
+            String dbMsg = getString(R.string.PokedexError);
             if(dbAdapter.saveToDB(p))// added toString instance method
             {
-                dbMsg= String.valueOf(R.string.SavetoDBmsg);
+                dbMsg= getString(R.string.SavetoDBmsg);
             }else {
                 List<String> results = dbAdapter.readTable();
                 // sorry ik this algorithm isn't the best, but who cares
                 for(String col : results){
                     if(col.equals(p.name)){
-                        dbMsg = String.valueOf(R.string.dbMsg);
+                        dbMsg = getString(R.string.dbMsg);
                         break;
                     }
                 }

@@ -38,7 +38,7 @@ public class MyPokedex extends ToolBarSetup {
         pokedex.setAdapter(adapter = new ListAdapter(this));
 
         SharedPreferences prefs = getSharedPreferences("Name", Context.MODE_PRIVATE);
-        String username = prefs.getString("UserName", String.valueOf(R.string.Trainer));
+        String username = prefs.getString("UserName", "Trainer");
         // lol, the string for the preference name and key val was set to all lowercase
         //bug fixed
 
