@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PokemonList extends ToolBarSetup {
-    Adapter adapter;
+    ListAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +32,7 @@ public class PokemonList extends ToolBarSetup {
         super.setupToolbar();
 
         ListView list = (ListView)  findViewById(R.id.firstList);
-        list.setAdapter(adapter = new Adapter());
+        list.setAdapter(this.adapter =new ListAdapter(this));
         String uri = "https://pokeapi.co/api/v2/pokemon/";
 
         for(int i = 1; i <= 5; i++){
@@ -57,48 +57,5 @@ public class PokemonList extends ToolBarSetup {
             intent.putExtra("pokemon", adapter.listItem.get(position).p.name);
             startActivity(intent);
         });
-    }
-
-
-    // adapter to inflate list objects
-    private class Adapter extends BaseAdapter {
-
-        List<PokemonListItem> listItem = new ArrayList<>();
-
-        @Override
-        public int getCount() {
-            return listItem.size();
-        }
-
-        @Override
-        public PokemonListItem getItem(int position) {
-
-            return listItem.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            LayoutInflater inflater = getLayoutInflater();
-            View pokemonList = convertView;
-
-            if(pokemonList == null){
-                pokemonList = inflater.inflate(R.layout.pokemon_list_item, parent, false);
-            }
-
-            ImageView item = pokemonList.findViewById(R.id.imgBtn);
-            TextView text = pokemonList.findViewById(R.id.pokemonName);
-            PokemonListItem li = getItem(position);
-            item.setImageBitmap(li.b);
-            text.setText(li.p.name);
-
-            return pokemonList;
-
-        }
     }
 }

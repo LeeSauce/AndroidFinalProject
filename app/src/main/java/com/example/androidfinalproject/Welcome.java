@@ -26,14 +26,21 @@ public class Welcome extends AppCompatActivity {
             return insets;
         });
 
+
         EditText name = findViewById(R.id.userName);
         Button submit = findViewById(R.id.nameButton);
         Button pokeapi = findViewById(R.id.PokeApiButton);
 
+        //moved SharedPreferences objects here bc it can now display the user name when user returns
+        SharedPreferences prefs = getSharedPreferences("Name", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        name.setHint(prefs.getString("UserName", "Trainer"));
+
         //Save name to SharedPreferences when button is clicked
         submit.setOnClickListener((c) -> {
             String username = name.getText().toString();
-            saveSharedPrefs(username);
+            saveSharedPrefs(username, editor);
             Snackbar.make(name,"Thank you " + username, Snackbar.LENGTH_LONG).show();
         });
         //Launch PokeApi when button is pressed
@@ -45,10 +52,8 @@ public class Welcome extends AppCompatActivity {
         });
     }
 
-    private void saveSharedPrefs(String stringToSave)
+    private void saveSharedPrefs(String stringToSave, SharedPreferences.Editor editor)
     {
-        SharedPreferences prefs = getSharedPreferences("Name", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
         editor.putString("UserName", stringToSave);
         editor.commit();
         Intent next = (new Intent(this,PokemonList.class));

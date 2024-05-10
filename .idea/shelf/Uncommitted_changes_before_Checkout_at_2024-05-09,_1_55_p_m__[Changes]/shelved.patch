@@ -1,0 +1,32 @@
+Index: .idea/deploymentTargetDropDown.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"deploymentTargetDropDown\">\n    <value>\n      <entry key=\"app\">\n        <State>\n          <runningDeviceTargetSelectedWithDropDown>\n            <Target>\n              <type value=\"RUNNING_DEVICE_TARGET\" />\n              <deviceKey>\n                <Key>\n                  <type value=\"SERIAL_NUMBER\" />\n                  <value value=\"10.0.0.186:40539\" />\n                </Key>\n              </deviceKey>\n            </Target>\n          </runningDeviceTargetSelectedWithDropDown>\n          <timeTargetWasSelectedWithDropDown value=\"2024-05-09T00:49:22.946661Z\" />\n        </State>\n      </entry>\n    </value>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/deploymentTargetDropDown.xml b/.idea/deploymentTargetDropDown.xml
+--- a/.idea/deploymentTargetDropDown.xml	
++++ b/.idea/deploymentTargetDropDown.xml	
+@@ -3,20 +3,7 @@
+   <component name="deploymentTargetDropDown">
+     <value>
+       <entry key="app">
+-        <State>
+-          <runningDeviceTargetSelectedWithDropDown>
+-            <Target>
+-              <type value="RUNNING_DEVICE_TARGET" />
+-              <deviceKey>
+-                <Key>
+-                  <type value="SERIAL_NUMBER" />
+-                  <value value="10.0.0.186:40539" />
+-                </Key>
+-              </deviceKey>
+-            </Target>
+-          </runningDeviceTargetSelectedWithDropDown>
+-          <timeTargetWasSelectedWithDropDown value="2024-05-09T00:49:22.946661Z" />
+-        </State>
++        <State />
+       </entry>
+     </value>
+   </component>

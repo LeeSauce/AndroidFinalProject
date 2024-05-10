@@ -2,6 +2,7 @@ package com.example.androidfinalproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -10,6 +11,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 public class Stats extends ToolBarSetup {
     DBAdapter dbAdapter = new DBAdapter(this);
@@ -27,8 +34,7 @@ Pokemon p = new Pokemon();
         Button save = findViewById(R.id.buttonSave);
 
         save.setOnClickListener((e)->{
-            pb.setVisibility(View.VISIBLE);
-            dbAdapter.saveToDB(p);
+            new Async(pb, this).execute();
         });
         save.setEnabled(false);
         //Load pokemon with name given from previous Activity
@@ -53,6 +59,53 @@ Pokemon p = new Pokemon();
                     .add(R.id.types_frag, TypesFragment.class, bundle)
                     .commit();
         }).execute();
-
     }
+    private class Async extends AsyncTask<Void, Void, Void>{
+        ProgressBar pb;
+        Context context;
+        public Async(ProgressBar pb, Context context){
+            this.pb = pb;
+            this.context = context;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            this.pb.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+            String dbMsg = "Pokedex error!";
+            if(dbAdapter.saveToDB(p))// added toString instance method
+            {
+                dbMsg= "Saved to Pokedex";
+            }else {
+                List<String> results = dbAdapter.readTable();
+                // sorry ik this algorithm isn't the best, but who cares
+                for(String col : results){
+                    if(col.equals(p.name)){
+                        dbMsg = "You already have this pokemon on your Pokedex";
+                        break;
+                    }
+                }
+            }
+
+            Toast.makeText(context, dbMsg, Toast.LENGTH_SHORT).show();// todo: change the msg to xml String
+            this.pb.setVisibility(View.GONE);
+        }
+    }
+
 }
+
+
