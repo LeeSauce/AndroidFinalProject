@@ -31,16 +31,17 @@ Pokemon p = new Pokemon();
         Button save = findViewById(R.id.buttonSave);
 
         save.setOnClickListener((e)->{
-            String dbMsg = "Something else went wrong";;
+            String dbMsg = "Pokedex error!";
             pb.setVisibility(View.VISIBLE);
             if(dbAdapter.saveToDB(p))// added toString instance method
             {
-                dbMsg= "Inserted into DB";
+                dbMsg= "Saved to Pokedex";
             }else {
                 List<String> results = dbAdapter.readTable();
+                // sorry ik this algorithm isn't the best, but who cares
                 for(String col : results){
                     if(col.equals(p.name)){
-                        dbMsg = "Value already entered";
+                        dbMsg = "You already have this pokemon on your Pokedex";
                         break;
                     }
                 }

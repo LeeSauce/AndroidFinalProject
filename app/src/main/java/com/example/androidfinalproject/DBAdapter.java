@@ -20,7 +20,6 @@ public class DBAdapter extends SQLiteOpenHelper {
 
     private static final String TABLE_NAME = "POKEDEX";
 
-    private static final String ID = "Poke_Id"; //
     private static final String NAME = "Poke_Name";
 
 
@@ -93,7 +92,7 @@ public class DBAdapter extends SQLiteOpenHelper {
                 cursor.moveToNext(); // also this needs to be added or we will run into a never ending loop
             }
         }
-        if(names.isEmpty()){// just here for debuging
+        if(names.isEmpty()){// just here for debugging
             return null;
         }
         return names;

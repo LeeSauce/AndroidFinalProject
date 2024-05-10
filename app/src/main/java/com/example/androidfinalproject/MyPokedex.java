@@ -3,6 +3,7 @@ package com.example.androidfinalproject;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,8 +33,10 @@ public class MyPokedex extends ToolBarSetup {
         TextView userPokedex = findViewById(R.id.UserPokedexText);
         ListView pokedex = findViewById(R.id.PokedexList);
 
-        SharedPreferences prefs = getSharedPreferences("name", Context.MODE_PRIVATE);
-        String username = prefs.getString("Username", "Stranger");
+        SharedPreferences prefs = getSharedPreferences("Name", Context.MODE_PRIVATE);
+        String username = prefs.getString("UserName", "Trainer");
+        // lol, the string for the preference name and key val was set to all lowercase
+        //bug fixed
 
         userPokedex.setText(username + "'s Pokedex");
 
