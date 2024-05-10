@@ -44,6 +44,8 @@ public class MyPokedex extends ToolBarSetup {
         DBAdapter db = new DBAdapter(this);
 
         userPokedex.setText(username + "'s Pokedex");
+
+        // pretty much the same logic as before, but it just validates that it exists in the db first
         List<String> pokemons = db.readTable();
 
         String uri = "https://pokeapi.co/api/v2/pokemon/";
