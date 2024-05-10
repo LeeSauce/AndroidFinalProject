@@ -16,20 +16,15 @@
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
         tools:openDrawer="start">
 
         <!-- CHANGE BETWEEN HERE -->
-        <TextView
-            android:id="@+id/UserPokedexText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"/>
         <ListView
-            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:id = "@+id/PokedexList"/>
+            android:layout_height="match_parent"
+            android:id="@+id/firstList"/>
         <!-- AND HERE-->
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
@@ -43,4 +38,3 @@
 
     </androidx.drawerlayout.widget.DrawerLayout>
 </LinearLayout>
-

@@ -6,13 +6,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
-public class Pokemon implements FromJSONer { public String frontPic;
+public class Pokemon implements FromJSONer {
+    public String frontPic;
     public String name;
-    public ArrayList<String> moves;
-    public ArrayList<String> types;
+    public List<String> moves;
+    public List<String> types;
+
 
     @NonNull
     public String toString() {
