@@ -99,8 +99,8 @@ public class DBAdapter extends SQLiteOpenHelper {
     }
 
         public void delete (Pokemon p){
-            SQLiteDatabase db = getReadableDatabase();
-            db.delete(TABLE_NAME, NAME, new String[]{p.name}); // let's try sqlites delete method
+            SQLiteDatabase db = getWritableDatabase(); // this needed to be set to writable
+            db.delete(TABLE_NAME, NAME+"= ?", new String[]{p.name}); // let's try sqlites delete method
             db.close();
         }
 
