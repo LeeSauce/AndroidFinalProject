@@ -38,14 +38,14 @@ public class MyPokedex extends ToolBarSetup {
         pokedex.setAdapter(adapter = new ListAdapter(this));
 
         SharedPreferences prefs = getSharedPreferences("Name", Context.MODE_PRIVATE);
-        String username = prefs.getString("UserName", "Trainer");
+        String username = prefs.getString("UserName", String.valueOf(R.string.Trainer));
         // lol, the string for the preference name and key val was set to all lowercase
         //bug fixed
 
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
         DBAdapter db = new DBAdapter(this);
-
+        // This will be weird for french translation
         userPokedex.setText(username + "'s Pokedex");
 
 
@@ -75,12 +75,12 @@ public class MyPokedex extends ToolBarSetup {
 
     pokedex.setOnItemClickListener((par, view, pos, id) ->{
         Pokemon pokemon = adapter.getItem(pos).p;
-        alert.setTitle("Alert!").setMessage("Are you sure you wish to remove " + pokemon.name)
-                .setPositiveButton("Yes", (click, arg)->{
+        alert.setTitle(R.string.Alert).setMessage(R.string.AreYouSure + pokemon.name)
+                .setPositiveButton(R.string.Yes, (click, arg)->{
                     db.delete(pokemon);
                     adapter.listItem.remove(pos);
                     adapter.notifyDataSetChanged();
-                }).setNegativeButton("No", (click, arg)->{}).create().show();
+                }).setNegativeButton(R.string.No, (click, arg)->{}).create().show();
     });
 
     }

@@ -35,13 +35,13 @@ public class Welcome extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("Name", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
-        name.setHint(prefs.getString("UserName", "Trainer"));
+        name.setHint(prefs.getString("UserName", String.valueOf(R.string.Trainer)));
 
         //Save name to SharedPreferences when button is clicked
         submit.setOnClickListener((c) -> {
             String username = name.getText().toString();
             saveSharedPrefs(username, editor);
-            Snackbar.make(name,"Thank you " + username, Snackbar.LENGTH_LONG).show();
+            Snackbar.make(name,R.string.Thankyou + username, Snackbar.LENGTH_LONG).show();
         });
         //Launch PokeApi when button is pressed
         pokeapi.setOnClickListener((c) -> {

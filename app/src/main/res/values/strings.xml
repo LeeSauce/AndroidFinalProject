@@ -2,4 +2,29 @@
     <string name="app_name">AndroidFinalProject</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="MyPokedex">My Pokedex</string>
+    <string name="PokemonList">Pokemon List</string>
+    <string name="Exit">Exit</string>
+    <string name="Help">Help</string>
+    <string name="Welcome">Welcome</string>
+    <string name="EnterName">Please enter your name</string>
+    <string name="Submit">Submit</string>
+    <string name="Save">Save</string>
+    <string name="Moves">Moves: </string>
+    <string name="Types">Types:</string>
+    <string name="Pokedex">Pokedex</string>
+    <string name="Creators">Gabe Lee and Jenn Hailey</string>
+    <string name="FinalProject">Android Final Project</string>
+    <string name="Thankyou">Thank you </string>
+    <string name="Trainer">Trainer</string>
+    <string name="HelpMessage">Search through the available pokemon and save them to your Pokedex</string>
+    <string name="PokedexError">Pokedex error!</string>
+    <string name="SavetoDBmsg">Saved to Pokedex</string>
+    <string name="dbMsg">You already have this pokemon on your Pokedex</string>
+    <string name="Alert">"Alert!"</string>
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
+    <string name="AreYouSure">Are you sure you wish to remove </string>
+
+
 </resources>

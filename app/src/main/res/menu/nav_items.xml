@@ -4,15 +4,15 @@
 
     <item android:id="@+id/Pokedex"
         android:orderInCategory="10"
-        android:title="My Pokedex"
+        android:title="@string/MyPokedex"
         app:showAsAction="never"/>
     <item android:id="@+id/PokemonList"
         android:orderInCategory="20"
-        android:title="Pokemon List"
+        android:title="@string/PokemonList"
         app:showAsAction="never"/>
     <item android:id="@+id/Exit"
         android:orderInCategory="30"
-        android:title="Exit"
+        android:title="@string/Exit"
         app:showAsAction="never"/>
 
 </menu>

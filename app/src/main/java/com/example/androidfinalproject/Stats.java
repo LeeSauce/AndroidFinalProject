@@ -86,22 +86,22 @@ Pokemon p = new Pokemon();
         @Override
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
-            String dbMsg = "Pokedex error!";
+            String dbMsg = String.valueOf(R.string.PokedexError);
             if(dbAdapter.saveToDB(p))// added toString instance method
             {
-                dbMsg= "Saved to Pokedex";
+                dbMsg= String.valueOf(R.string.SavetoDBmsg);
             }else {
                 List<String> results = dbAdapter.readTable();
                 // sorry ik this algorithm isn't the best, but who cares
                 for(String col : results){
                     if(col.equals(p.name)){
-                        dbMsg = "You already have this pokemon on your Pokedex";
+                        dbMsg = String.valueOf(R.string.dbMsg);
                         break;
                     }
                 }
             }
 
-            Toast.makeText(context, dbMsg, Toast.LENGTH_SHORT).show();// todo: change the msg to xml String
+            Toast.makeText(context, dbMsg, Toast.LENGTH_SHORT).show();
             this.pb.setVisibility(View.GONE);
         }
     }

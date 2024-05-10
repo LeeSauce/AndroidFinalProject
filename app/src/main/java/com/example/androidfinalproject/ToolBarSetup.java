@@ -14,8 +14,8 @@ import com.google.android.material.navigation.NavigationView;
 
 
 public class ToolBarSetup extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    String helpTitle ="Help";
-    String helpContent="Search through the available pokemon and save them to your Pokedex";
+    String helpTitle = String.valueOf(R.string.Help);
+    String helpContent= String.valueOf(R.string.HelpMessage);
     protected void setupToolbar() {
         //Bringing in Toolbar and Navigation Drawer
         Toolbar tb = findViewById(R.id.toolbar);
@@ -46,7 +46,7 @@ public class ToolBarSetup extends AppCompatActivity implements NavigationView.On
             builder.setMessage(helpContent);
             builder.setTitle(helpTitle);
             builder.setCancelable(true);
-            builder.setNegativeButton("Close", (DialogInterface.OnClickListener) (dialog, which) -> {
+            builder.setNegativeButton(R.string.close, (DialogInterface.OnClickListener) (dialog, which) -> {
                 dialog.cancel();
             });
             AlertDialog alertDialog = builder.create();
