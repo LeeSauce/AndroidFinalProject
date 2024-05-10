@@ -16,11 +16,10 @@ public class Stats extends ToolBarSetup {
 Pokemon p = new Pokemon();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.stats_constraint);
         setupToolbar();
 
-
+        // Get views
         ProgressBar pb = findViewById(R.id.progressBar);
         pb.setMax(10);
         ImageView img = findViewById(R.id.pokePic);
@@ -32,7 +31,7 @@ Pokemon p = new Pokemon();
             dbAdapter.saveToDB(p);
         });
         save.setEnabled(false);
-
+        //Load pokemon with name given from previous Activity
         Intent intent = getIntent();
         new AsyncHTTPRequest<>(p, "https://pokeapi.co/api/v2/pokemon/" + intent.getStringExtra("pokemon"), (p) -> {
             name.setText(p.name);
